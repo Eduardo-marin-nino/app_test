@@ -62,6 +62,15 @@ class AuthFirebaseApi {
     }
   }
 
+  Future<AuthResultStatus?> resetPasswordForEmail(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      return AuthResultStatus.successful;
+    } on FirebaseAuthException catch (e) {
+      return AuthExceptionHandler.handleException(e);
+    }
+  }
+
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
