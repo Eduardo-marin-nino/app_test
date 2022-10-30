@@ -1,6 +1,6 @@
-import 'package:app_test/data/models/user_model/user_model.dart';
 import 'package:logger/logger.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app_test/data/models/user_model/user_model.dart';
 
 class UserApi {
   final Logger logger = Logger();

@@ -1,10 +1,13 @@
 import 'package:app_test/core/utils/hooks/use_validations.dart';
 import 'package:app_test/gui/views/login_view/login_controller.dart';
+import 'package:app_test/gui/views/login_view/widgets/signin_options_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:app_test/gui/widgets/button_generic.dart';
 import 'package:app_test/gui/widgets/text_form_input.dart';
 import 'package:app_test/gui/templates/auth_template.dart';
 import 'package:app_test/gui/widgets/activity_indicator.dart';
+
+import 'widgets/row_buttons_widget.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -15,10 +18,24 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   late LoginController controller;
+
+  @override
+  void initState() {
+    controller = LoginController(context)..init();
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AuthTemplate(
-      heightTemplate: 0.2,
+      heightTemplate: 0.13,
       child: Form(
         key: controller.formKey,
         child: Column(
@@ -75,7 +92,12 @@ class _LoginViewState extends State<LoginView> {
                       );
               },
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            const SigninOptions(),
             const SizedBox(height: 30),
+            const RowButtonsOptions()
           ],
         ),
       ),
