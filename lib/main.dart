@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: storeProviders,
       child: MaterialApp(
-        initialRoute: _auth.currentUser == null ? '/' : 'main',
+        initialRoute: "/",
         theme: AppTheme.light(),
         themeMode: ThemeMode.light,
         onGenerateRoute: RouterGenerator.generateRoute,
