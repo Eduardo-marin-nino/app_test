@@ -12,6 +12,8 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       isActive: json['isActive'] as bool?,
       lastName: json['lastName'] as String?,
       firtsName: json['firtsName'] as String?,
+      reference: UserModel._fromJsonDocumentReference(
+          json['reference'] as DocumentReference<Object?>?),
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -20,4 +22,5 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'isActive': instance.isActive,
       'lastName': instance.lastName,
       'firtsName': instance.firtsName,
+      'reference': UserModel._toJsonDocumentReference(instance.reference),
     };

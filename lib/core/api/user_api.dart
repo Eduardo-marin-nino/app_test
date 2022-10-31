@@ -4,7 +4,6 @@ import 'package:app_test/data/models/user_model/user_model.dart';
 
 class UserApi {
   final Logger logger = Logger();
-  final keyCollectionCreditCard = "paymentCards";
   final CollectionReference _firestore =
       FirebaseFirestore.instance.collection('users');
 
@@ -46,39 +45,6 @@ class UserApi {
     } catch (e) {
       logger.e(e);
       return null;
-    }
-  }
-
-  Future<QuerySnapshot?> findFcmToken(String token) async {
-    try {
-      return _firestore.where("fcmToken", isEqualTo: token).get();
-    } catch (e) {
-      logger.e(e);
-      return null;
-    }
-  }
-
-  Future<bool> updateUser(UserModel user) async {
-    try {
-      await _firestore.doc(user.id).update(user.toJson());
-      return true;
-    } catch (e) {
-      logger.e(e);
-      return false;
-    }
-  }
-
-  Future<bool> deleteCard(String user, String idPaymentCard) async {
-    try {
-      await _firestore
-          .doc(user)
-          .collection(keyCollectionCreditCard)
-          .doc(idPaymentCard)
-          .delete();
-      return true;
-    } catch (e) {
-      logger.e(e);
-      return false;
     }
   }
 }

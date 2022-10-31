@@ -1,14 +1,13 @@
-import 'package:app_test/core/utils/auth_exception_firebase.dart';
-import 'package:app_test/core/utils/hooks/use_navigations.dart';
-import 'package:app_test/data/models/user_model/user_model.dart';
-import 'package:app_test/gui/widgets/snackbar_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app_test/core/api/user_api.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:app_test/gui/widgets/snackbar_alert.dart';
 import 'package:app_test/core/api/auth_firebase_api.dart';
 import 'package:app_test/core/provider/user_provider.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:app_test/core/utils/hooks/use_navigations.dart';
+import 'package:app_test/data/models/user_model/user_model.dart';
+import 'package:app_test/core/utils/auth_exception_firebase.dart';
 
 class RegisterController {
   late BuildContext _context;

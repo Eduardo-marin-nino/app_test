@@ -1,28 +1,14 @@
-import 'package:app_test/data/models/user_model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:app_test/data/models/user_model/user_model.dart';
+import 'package:app_test/data/models/addres_model/address_model.dart';
 
 class UserProvider with ChangeNotifier {
   User? _userAuth;
   UserModel? _user;
+  AddressModel? _selectedAddress;
   LatLng? _currentPosition;
-  bool _isLoadingCreateCard = true;
-  bool _isLoadingUpdateProfile = false;
-
-  bool get isLoadingCreateCard => _isLoadingCreateCard;
-
-  set isLoadingCreateCard(bool isLoadingCreateCard) {
-    _isLoadingCreateCard = isLoadingCreateCard;
-    notifyListeners();
-  }
-
-  bool get isLoadingUpdateProfile => _isLoadingUpdateProfile;
-
-  set isLoadingUpdateProfile(bool isLoadingUpdateProfile) {
-    _isLoadingUpdateProfile = isLoadingUpdateProfile;
-    notifyListeners();
-  }
 
   User? get userAuth => _userAuth;
 
@@ -42,6 +28,13 @@ class UserProvider with ChangeNotifier {
 
   set currentPosition(LatLng? currentPosition) {
     _currentPosition = currentPosition;
+    notifyListeners();
+  }
+
+  AddressModel? get selectedAddress => _selectedAddress;
+
+  set selectedAddress(AddressModel? selectedAddress) {
+    _selectedAddress = selectedAddress;
     notifyListeners();
   }
 }

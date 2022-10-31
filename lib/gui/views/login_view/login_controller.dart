@@ -55,14 +55,15 @@ class LoginController {
         final userDetail =
             await _userApi.getUser(firebaseResponse.credentialUser!.user!.uid);
 
-        if (userDetail != null) {
-          _redirect();
+        if (userDetail != null && userDetail.exists) {
+          _redirect("main");
         }
       } else {
         isLoading.value = false;
         final errorMessage = AuthExceptionHandler.generateExceptionMessage(
             firebaseResponse.status);
         alertError(errorMessage);
+        redirectPush();
       }
     }
   }
@@ -81,7 +82,7 @@ class LoginController {
         isLoadingData.value = false;
         _userProvider.userAuth = credential.user;
         _userProvider.user = docUser.data();
-        _redirect();
+        _redirect("main");
       } else {
         _createUserFireStore(credential);
       }
@@ -106,14 +107,18 @@ class LoginController {
     if (response) {
       _userProvider.userAuth = userCredential.user;
       _userProvider.user = user;
-      _redirect();
+      _redirect("main");
     } else {
       alertError("Hubo un error al registrarse con google");
     }
   }
 
-  void _redirect() {
-    useNavigateReplaceName(_context, 'main');
+  void _redirect(String route) {
+    useNavigateReplaceName(_context, route);
+  }
+
+  void redirectPush() {
+    useNavigatePushName(_context, "register");
   }
 
   void alertError(String message) {

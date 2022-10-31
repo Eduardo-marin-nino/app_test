@@ -95,7 +95,9 @@ class _LoginViewState extends State<LoginView> {
             const SizedBox(
               height: 20,
             ),
-            const SigninOptions(),
+            SigninOptions(
+              onTapGoogle: controller.signInWithGoogle,
+            ),
             const SizedBox(height: 30),
             const RowButtonsOptions()
           ],
