@@ -1,13 +1,14 @@
-import 'package:app_test/core/utils/hooks/use_validations.dart';
-import 'package:app_test/gui/views/login_view/login_controller.dart';
-import 'package:app_test/gui/views/login_view/widgets/signin_options_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:app_test/gui/widgets/button_generic.dart';
 import 'package:app_test/gui/widgets/text_form_input.dart';
 import 'package:app_test/gui/templates/auth_template.dart';
 import 'package:app_test/gui/widgets/activity_indicator.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:app_test/core/utils/hooks/use_validations.dart';
+import 'package:app_test/gui/views/login_view/login_controller.dart';
 
 import 'widgets/row_buttons_widget.dart';
+import 'widgets/button_social_authentication.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -95,8 +96,11 @@ class _LoginViewState extends State<LoginView> {
             const SizedBox(
               height: 20,
             ),
-            SigninOptions(
-              onTapGoogle: controller.signInWithGoogle,
+            Center(
+              child: ButtonAuthentication(
+                icon: MaterialCommunityIcons.google,
+                onTap: controller.signInWithGoogle,
+              ),
             ),
             const SizedBox(height: 30),
             const RowButtonsOptions()

@@ -7,6 +7,7 @@ import 'package:app_test/data/models/addres_model/address_model.dart';
 class UserProvider with ChangeNotifier {
   User? _userAuth;
   UserModel? _user;
+  String _textInput = '';
   AddressModel? _selectedAddress;
   LatLng? _currentPosition;
 
@@ -21,6 +22,13 @@ class UserProvider with ChangeNotifier {
 
   set user(UserModel? user) {
     _user = user;
+    notifyListeners();
+  }
+
+  String get textInput => _textInput;
+
+  set textInput(String? textInput) {
+    _textInput = textInput ?? '';
     notifyListeners();
   }
 

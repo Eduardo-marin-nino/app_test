@@ -42,11 +42,6 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.black87),
-        backgroundColor: Colors.transparent,
-      ),
       body: Stack(
         children: [
           const MapWidget(),

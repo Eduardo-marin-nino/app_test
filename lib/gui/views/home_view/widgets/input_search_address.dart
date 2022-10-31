@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:app_test/gui/widgets/text_form_input.dart';
+import 'package:provider/provider.dart';
+import 'package:app_test/core/provider/user_provider.dart';
+import 'package:app_test/core/theme/colors_app_theme.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:app_test/gui/views/home_view/home_controller.dart';
 
@@ -13,32 +15,35 @@ class InputSearchAddress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: controller.goSelectAddress,
+    return SafeArea(
       child: Container(
-        height: 50,
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-        padding: const EdgeInsets.symmetric(horizontal: 20),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
           color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
         ),
-        alignment: Alignment.topCenter,
-        child: AbsorbPointer(
-          child: TextFormInput(
-            controller: controller.addressController,
-            hintText: 'Dirección',
-            icon: Feather.map_pin,
-            iconColor: Theme.of(context).colorScheme.primary,
-            validator: (String? value) {
-              if (value!.isEmpty) {
-                return 'La dirección es obligatoria';
-              }
-              return null;
-            },
+        margin: const EdgeInsets.all(20),
+        child: ListTile(
+          onTap: controller.goSelectAddress,
+          leading: const Icon(
+            Feather.map_pin,
+            color: ColorsAppTheme.primaryColor,
+            size: 25,
+          ),
+          title: _textAddress(),
+          trailing: const Icon(
+            Icons.keyboard_arrow_right_sharp,
+            color: ColorsAppTheme.primaryColor,
+            size: 25,
           ),
         ),
       ),
     );
   }
+
+  Widget _textAddress() => Consumer<UserProvider>(
+        builder: (_, userProvider, __) => Text(
+          userProvider.textInput,
+          style: const TextStyle(fontSize: 14),
+        ),
+      );
 }

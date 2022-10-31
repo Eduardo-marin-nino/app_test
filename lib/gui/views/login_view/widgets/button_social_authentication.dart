@@ -15,15 +15,15 @@ class ButtonAuthentication extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 60,
-        width: 60,
+        height: 70,
+        width: 70,
         decoration: BoxDecoration(
           color: Colors.grey[200]!,
           shape: BoxShape.circle,
         ),
         child: Icon(
           icon,
-          size: 30,
+          size: 35,
           color: const Color.fromARGB(255, 18, 183, 134),
         ),
       ),

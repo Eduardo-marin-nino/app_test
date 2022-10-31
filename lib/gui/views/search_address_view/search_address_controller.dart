@@ -51,6 +51,11 @@ class SearchAddressController {
     final GooglePlaceDetailsModel? detail =
         await _addressApi.getDetailPlace(prediction.placeId!);
     _addressProvider.selectedDetailPlace = detail;
+    _userProvider.currentPosition = LatLng(
+      detail!.result!.geometry!.location!.lat!,
+      detail.result!.geometry!.location!.lng!,
+    );
+    _userProvider.textInput = detail.result?.formattedAddress ?? '';
     redirect();
   }
 

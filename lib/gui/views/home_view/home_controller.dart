@@ -8,18 +8,14 @@ import 'package:app_test/core/utils/debouncer.dart';
 import 'package:app_test/core/provider/user_provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:app_test/core/utils/hooks/use_navigations.dart';
-import 'package:app_test/data/models/addres_model/address_model.dart';
 
 class HomeController {
   late BuildContext _context;
   LatLng userLocation = const LatLng(4.6482837, -74.2478913);
 
-  AddressModel? selectedAddress;
-
   late Completer<GoogleMapController> controllerGMController;
 
-  late TextEditingController addressController;
-
+  late String? textInput;
   final GeocodeComponent _geocodeComponent = GeocodeComponent();
 
   //Provider
@@ -36,8 +32,6 @@ class HomeController {
   }
 
   Future<void> initData(Completer<GoogleMapController> controller) async {
-    addressController = TextEditingController();
-
     final hasPermissionLocation = await LocationComponent.validate();
     if (hasPermissionLocation) {
       final currentPosition = await LocationComponent.get();
@@ -66,8 +60,7 @@ class HomeController {
 
   void setSelectedAddress() {
     final address = _userProvider.selectedAddress;
-    selectedAddress = address;
-    addressController.text = address!.address;
+    _userProvider.textInput = address!.address;
     controllerGMController.future.then(
       (GoogleMapController googleMapController) =>
           googleMapController.moveCamera(
@@ -90,9 +83,8 @@ class HomeController {
         cameraPosition.target.latitude,
         cameraPosition.target.longitude,
       );
-      selectedAddress = null;
       userLocation = cameraPosition.target;
-      addressController.text = address;
+      _userProvider.textInput = address;
     });
   }
 
@@ -104,8 +96,6 @@ class HomeController {
   }
 
   void dispose() {
-    selectedAddress = null;
-    addressController.dispose();
     userLocation = const LatLng(4.6482837, -74.2478913);
   }
 }
