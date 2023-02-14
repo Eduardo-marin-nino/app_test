@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:app_test/core/api/auth_firebase_api.dart';
 import 'package:app_test/core/utils/hooks/use_navigations.dart';
 
 class ProfileController {
@@ -16,7 +15,6 @@ class ProfileController {
   }
 
   void logout() async {
-    await AuthFirebaseApi().signOut();
     _redirect();
   }
 

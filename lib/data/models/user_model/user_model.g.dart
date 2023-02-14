@@ -7,20 +7,15 @@ part of 'user_model.dart';
 // **************************************************************************
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
-      id: json['id'] as String?,
-      email: json['email'] as String?,
-      isActive: json['isActive'] as bool?,
       lastName: json['lastName'] as String?,
+      direction: json['direction'] as String?,
       firtsName: json['firtsName'] as String?,
-      reference: UserModel._fromJsonDocumentReference(
-          json['reference'] as DocumentReference<Object?>?),
+      birthDate: json['birthDate'] as String?,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
-      'id': instance.id,
-      'email': instance.email,
-      'isActive': instance.isActive,
       'lastName': instance.lastName,
+      'direction': instance.direction,
       'firtsName': instance.firtsName,
-      'reference': UserModel._toJsonDocumentReference(instance.reference),
+      'birthDate': instance.birthDate,
     };
