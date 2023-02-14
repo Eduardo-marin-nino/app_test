@@ -11,7 +11,7 @@ class CardProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserModel? user = context.watch<UserProvider>().user;
+    final UserModel user = context.watch<UserProvider>().user;
     return CardWidget(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       child: Row(
@@ -28,11 +28,15 @@ class CardProfile extends StatelessWidget {
               children: [
                 _information(
                   title: 'Nombre y Apellido',
-                  subTitle: "${user?.firtsName} ${user?.lastName}",
+                  subTitle: "${user.firtsName} ${user.lastName}",
                 ),
                 _information(
-                  title: 'Correo',
-                  subTitle: user?.email ?? '',
+                  title: 'Dirección',
+                  subTitle: user.direction ?? '',
+                ),
+                _information(
+                  title: 'Fecha de nacimiento',
+                  subTitle: user.birthDate?.substring(0, 10) ?? '',
                 ),
               ],
             ),

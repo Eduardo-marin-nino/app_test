@@ -1,9 +1,10 @@
+import 'package:app_test/gui/widgets/input_datetime.dart';
 import 'package:flutter/material.dart';
 import 'package:app_test/gui/widgets/button_generic.dart';
 import 'package:app_test/gui/templates/auth_template.dart';
 import 'package:app_test/gui/widgets/text_form_input.dart';
-import 'package:app_test/gui/widgets/activity_indicator.dart';
 import 'package:app_test/core/utils/hooks/use_validations.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import 'register_controller.dart';
 
@@ -77,46 +78,41 @@ class _RegisterViewState extends State<RegisterView> {
             ),
             const SizedBox(height: 20),
             TextFormInput(
-              controller: controller.emailController,
+              controller: controller.directionController,
               keyBoardType: TextInputType.emailAddress,
-              hintText: 'Ingresa tu correo',
+              hintText: 'Ingresa tu dirección',
               validator: (String? value) {
                 if (value!.isEmpty) {
-                  return 'El email obligatorio';
-                } else if (!useValidateEmail(value)) {
-                  return 'Formato inválido';
+                  return 'La dirección es obligatoria';
                 }
                 return null;
               },
               onFieldSubmitted: (_) => FocusScope.of(context).unfocus(),
             ),
             const SizedBox(height: 20),
-            TextFormInput(
-              controller: controller.passwordController,
-              obscureText: true,
-              hintText: 'Ingresa tu nueva contraseña',
+            InputDateTime(
+              hint: 'Fecha de nacimiento',
+              icon: Feather.calendar,
+              initialDate: controller.birthDay,
+              onConfirm: (DateTime value) {
+                controller.birthDay = value;
+              },
               validator: (String? value) {
                 if (value!.isEmpty) {
-                  return 'La contraseña es obligatoria';
+                  return 'La fecha es obligatoria';
                 }
                 return null;
               },
-              onFieldSubmitted: (_) => FocusScope.of(context).unfocus(),
+              title: "Selecciona la fecha",
             ),
             const SizedBox(height: 30),
-            ValueListenableBuilder(
-                valueListenable: controller.isLoading,
-                builder: (BuildContext _, bool loading, Widget? __) {
-                  return loading
-                      ? const ActivityIndicator()
-                      : Center(
-                          child: ButtonWidget(
-                            label: 'Crear cuenta',
-                            onTap: controller.onRegister,
-                            width: 200,
-                          ),
-                        );
-                })
+            Center(
+              child: ButtonWidget(
+                label: 'Crear cuenta',
+                onTap: controller.onRegister,
+                width: 200,
+              ),
+            ),
           ],
         ),
       ),

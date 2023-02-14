@@ -1,48 +1,28 @@
-import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:app_test/data/models/user_model/user_model.dart';
-import 'package:app_test/data/models/addres_model/address_model.dart';
 
-class UserProvider with ChangeNotifier {
-  User? _userAuth;
-  UserModel? _user;
-  String _textInput = '';
-  AddressModel? _selectedAddress;
-  LatLng? _currentPosition;
+import 'disposable_provider.dart';
 
-  User? get userAuth => _userAuth;
+class UserProvider extends DisposableProvider {
+  bool _loading = false;
+  UserModel _user = const UserModel();
 
-  set userAuth(User? userAuth) {
-    _userAuth = userAuth;
-    notifyListeners();
-  }
+  UserModel get user => _user;
 
-  UserModel? get user => _user;
-
-  set user(UserModel? user) {
+  set user(UserModel user) {
     _user = user;
     notifyListeners();
   }
 
-  String get textInput => _textInput;
+  bool get loading => _loading;
 
-  set textInput(String? textInput) {
-    _textInput = textInput ?? '';
+  set loading(bool loading) {
+    _loading = loading;
     notifyListeners();
   }
 
-  LatLng? get currentPosition => _currentPosition;
-
-  set currentPosition(LatLng? currentPosition) {
-    _currentPosition = currentPosition;
-    notifyListeners();
-  }
-
-  AddressModel? get selectedAddress => _selectedAddress;
-
-  set selectedAddress(AddressModel? selectedAddress) {
-    _selectedAddress = selectedAddress;
-    notifyListeners();
+  @override
+  void disposeValues() {
+    _loading = false;
+    _user = const UserModel();
   }
 }
