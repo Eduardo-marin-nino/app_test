@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-useNavigatePushName(BuildContext context, String route, {Object? arguments}) {
-  Navigator.of(context).pushNamed(route, arguments: arguments);
+useNavigatePushName(
+  BuildContext context,
+  String route,
+) {
+  GoRouter.of(context).pushNamed(
+    route,
+  );
 }
 
 void useNavigatePop(BuildContext context) async {
-  Navigator.of(context).pop();
+  GoRouter.of(context).pop();
 }
 
 useNavigateReplaceName(BuildContext context, String route,
-    {Object? arguments}) {
-  Navigator.of(context).pushReplacementNamed(
+    {Map<String, dynamic>? arguments}) {
+  GoRouter.of(context).pushReplacementNamed(
     route,
-    arguments: arguments,
   );
 }
 

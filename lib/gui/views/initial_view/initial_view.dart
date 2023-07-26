@@ -26,7 +26,7 @@ class InitialView extends StatelessWidget {
             child: ButtonWidget(
               width: 220,
               label: 'Registrate',
-              onTap: () => useNavigatePushName(context, 'register'),
+              onTap: () => useNavigateReplaceName(context, "profile"),
             ),
           ),
         ],

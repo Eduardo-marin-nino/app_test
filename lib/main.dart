@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:app_test/core/paths/app_paths.dart';
 import 'package:app_test/core/theme/app_theme.dart';
@@ -16,12 +17,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: AppProviders.storeProviders,
-      child: MaterialApp(
-        initialRoute: "/",
+      child: MaterialApp.router(
+        routerConfig: GoRouter(
+            initialLocation: "/", routes: RouterGenerator.routesBase()),
         theme: AppTheme.light(),
         themeMode: ThemeMode.light,
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: RouterGenerator.generateRoute,
       ),
     );
   }
