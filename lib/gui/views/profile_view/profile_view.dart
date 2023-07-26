@@ -1,3 +1,4 @@
+import 'package:app_test/gui/views/profile_view/widgets/button_web_rtc.dart';
 import 'package:flutter/material.dart';
 import 'package:app_test/gui/widgets/app_bar.dart';
 import 'package:app_test/gui/widgets/button_generic.dart';
@@ -14,6 +15,7 @@ class ProfileView extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(
         centerTitle: true,
+        actions: [ButtonWebRTC()],
         title: Text('Perfil'),
       ),
       body: SingleChildScrollView(
